@@ -4,7 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>48 Store — Gaming Tweaks</title>
+
+<title>48 Store — Premium Gaming Tweaks</title>
 
 <style>
 *{
@@ -19,114 +20,148 @@ html{
 }
 
 body{
-    background:#050505;
+    background:#030303;
     color:#fff;
     overflow-x:hidden;
 }
 
-/* Animated background */
+/* ================= BACKGROUND ================= */
+
 body::before{
     content:"";
     position:fixed;
     inset:0;
-    z-index:-3;
+    z-index:-5;
     background:
-        radial-gradient(circle at 20% 20%,rgba(255,0,0,.18),transparent 30%),
-        radial-gradient(circle at 80% 70%,rgba(180,0,0,.15),transparent 30%),
-        #050505;
-    animation:bgMove 8s ease-in-out infinite alternate;
+        radial-gradient(circle at 15% 20%,rgba(255,0,0,.18),transparent 28%),
+        radial-gradient(circle at 85% 70%,rgba(255,0,0,.12),transparent 30%),
+        #030303;
+    animation:backgroundMove 8s ease-in-out infinite alternate;
 }
 
 body::after{
     content:"";
     position:fixed;
     inset:0;
-    z-index:-2;
-    opacity:.12;
+    z-index:-4;
+    opacity:.10;
     background-image:
-        linear-gradient(rgba(255,0,0,.5) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,0,0,.5) 1px,transparent 1px);
+        linear-gradient(rgba(255,0,0,.45) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,0,0,.45) 1px,transparent 1px);
     background-size:45px 45px;
     transform:perspective(500px) rotateX(55deg) scale(1.5);
     transform-origin:center bottom;
     animation:gridMove 7s linear infinite;
 }
 
-@keyframes bgMove{
-    from{transform:scale(1);}
-    to{transform:scale(1.12);}
+@keyframes backgroundMove{
+    from{transform:scale(1)}
+    to{transform:scale(1.12)}
 }
 
 @keyframes gridMove{
-    from{background-position:0 0;}
-    to{background-position:0 45px;}
+    from{background-position:0 0}
+    to{background-position:0 45px}
 }
 
 /* Floating lights */
+
 .light{
     position:fixed;
-    width:8px;
-    height:8px;
+    width:7px;
+    height:7px;
     border-radius:50%;
-    background:#ff1717;
-    box-shadow:0 0 20px #ff1717,0 0 40px #ff0000;
+    background:#ff1010;
+    box-shadow:
+        0 0 15px #ff1010,
+        0 0 35px #ff0000;
     opacity:.5;
-    z-index:-1;
-    animation:float 7s infinite ease-in-out;
+    z-index:-2;
+    animation:floatLight 7s infinite ease-in-out;
 }
 
-.light:nth-child(1){left:10%;top:80%;animation-delay:0s}
-.light:nth-child(2){left:25%;top:30%;animation-delay:2s}
-.light:nth-child(3){left:70%;top:75%;animation-delay:1s}
-.light:nth-child(4){left:90%;top:25%;animation-delay:3s}
-
-@keyframes float{
-    0%,100%{transform:translateY(0) translateX(0);opacity:.2}
-    50%{transform:translateY(-100px) translateX(40px);opacity:.8}
+.light:nth-child(1){
+    left:8%;
+    top:80%;
 }
 
-/* Navbar */
+.light:nth-child(2){
+    left:28%;
+    top:30%;
+    animation-delay:2s;
+}
+
+.light:nth-child(3){
+    left:70%;
+    top:75%;
+    animation-delay:1s;
+}
+
+.light:nth-child(4){
+    left:91%;
+    top:25%;
+    animation-delay:3s;
+}
+
+@keyframes floatLight{
+    0%,100%{
+        transform:translateY(0) translateX(0);
+        opacity:.2;
+    }
+
+    50%{
+        transform:translateY(-100px) translateX(45px);
+        opacity:.9;
+    }
+}
+
+/* ================= NAVBAR ================= */
+
 nav{
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    z-index:100;
+    z-index:1000;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:18px 6%;
-    background:rgba(5,5,5,.72);
-    backdrop-filter:blur(18px);
+
+    background:rgba(3,3,3,.78);
+    backdrop-filter:blur(20px);
+
     border-bottom:1px solid rgba(255,0,0,.18);
 }
 
 .logo{
     font-size:25px;
-    font-weight:900;
+    font-weight:1000;
     letter-spacing:2px;
-    color:#fff;
 }
 
 .logo span{
-    color:#ff1a1a;
+    color:#ff1515;
+    text-shadow:0 0 18px rgba(255,0,0,.7);
 }
 
 nav ul{
     list-style:none;
     display:flex;
-    gap:28px;
+    gap:30px;
 }
 
 nav a{
-    color:#aaa;
+    color:#999;
     text-decoration:none;
-    font-weight:700;
+    font-weight:800;
     transition:.3s;
 }
 
 nav a:hover{
-    color:#ff2020;
+    color:#fff;
     text-shadow:0 0 15px #ff0000;
 }
 
@@ -136,79 +171,113 @@ nav a:hover{
 }
 
 .lang button{
-    border:1px solid #333;
-    background:#101010;
-    color:#aaa;
+    border:1px solid #292929;
+    background:#0c0c0c;
+    color:#999;
     padding:7px 12px;
     border-radius:8px;
     cursor:pointer;
-    font-weight:bold;
+    font-weight:900;
     transition:.25s;
 }
 
 .lang button:hover,
 .lang button.active{
     color:#fff;
-    border-color:#ff1616;
-    background:#8f0000;
-    box-shadow:0 0 15px rgba(255,0,0,.3);
+    border-color:#ff1515;
+    background:#8c0000;
+    box-shadow:0 0 18px rgba(255,0,0,.4);
 }
 
-/* Hero */
+/* ================= HERO ================= */
+
 .hero{
     min-height:100vh;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     text-align:center;
-    padding:120px 20px 80px;
+
+    padding:130px 20px 80px;
+
     position:relative;
 }
 
 .hero-content{
-    max-width:950px;
+    max-width:1000px;
 }
 
 .badge{
     display:inline-block;
-    padding:9px 17px;
-    border:1px solid rgba(255,0,0,.45);
+
+    padding:9px 18px;
+
+    border:1px solid rgba(255,0,0,.5);
     border-radius:100px;
+
     color:#ff5555;
-    background:rgba(255,0,0,.06);
+    background:rgba(255,0,0,.05);
+
     margin-bottom:25px;
-    font-weight:bold;
+
+    font-weight:900;
     letter-spacing:1px;
-    animation:pulse 2s infinite;
+
+    box-shadow:0 0 25px rgba(255,0,0,.08);
+
+    animation:badgePulse 2s infinite;
 }
 
-@keyframes pulse{
-    50%{box-shadow:0 0 30px rgba(255,0,0,.2)}
+@keyframes badgePulse{
+    50%{
+        box-shadow:
+            0 0 35px rgba(255,0,0,.3),
+            inset 0 0 15px rgba(255,0,0,.08);
+    }
 }
 
 .hero h1{
-    font-size:clamp(50px,8vw,100px);
-    line-height:.95;
+    font-size:clamp(55px,8vw,105px);
+    line-height:.94;
+
     font-weight:1000;
-    letter-spacing:-4px;
+    letter-spacing:-5px;
 }
 
 .hero h1 span{
-    color:#ff1717;
-    text-shadow:0 0 35px rgba(255,0,0,.5);
+    color:#ff1515;
+
+    text-shadow:
+        0 0 15px rgba(255,0,0,.5),
+        0 0 45px rgba(255,0,0,.25);
+
     animation:titleGlow 2s infinite alternate;
 }
 
 @keyframes titleGlow{
-    from{text-shadow:0 0 10px rgba(255,0,0,.25)}
-    to{text-shadow:0 0 45px rgba(255,0,0,.75)}
+    from{
+        text-shadow:
+            0 0 10px rgba(255,0,0,.3);
+    }
+
+    to{
+        text-shadow:
+            0 0 20px rgba(255,0,0,.8),
+            0 0 55px rgba(255,0,0,.45);
+    }
 }
 
 .hero p{
-    color:#999;
-    max-width:650px;
-    margin:28px auto;
+    color:#8b8b8b;
+
+    max-width:700px;
+
+    margin:30px auto;
+
     line-height:1.8;
+
     font-size:18px;
 }
 
@@ -219,40 +288,79 @@ nav a:hover{
     flex-wrap:wrap;
 }
 
+/* ================= BUTTONS ================= */
+
 .btn{
     position:relative;
     overflow:hidden;
+
     display:inline-block;
-    padding:15px 28px;
+
+    padding:15px 30px;
+
     border-radius:10px;
+
     text-decoration:none;
-    font-weight:900;
-    border:1px solid #ff2020;
+
+    font-weight:1000;
+
+    border:1px solid #ff1c1c;
+
     cursor:pointer;
+
     transition:.25s;
 }
 
 .btn-primary{
     background:#e50909;
     color:#fff;
-    box-shadow:0 0 25px rgba(255,0,0,.25);
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,.25);
 }
 
 .btn-secondary{
-    background:#111;
+    background:#101010;
     color:#fff;
 }
 
 .btn:hover{
-    transform:translateY(-4px) scale(1.02);
-    box-shadow:0 10px 35px rgba(255,0,0,.3);
+    transform:translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 10px 40px rgba(255,0,0,.4);
 }
 
 .btn:active{
-    transform:scale(.94);
+    transform:scale(.93);
 }
 
-/* Sections */
+/* Shine */
+
+.btn::before{
+    content:"";
+
+    position:absolute;
+
+    top:-80%;
+    left:-100%;
+
+    width:50%;
+    height:260%;
+
+    background:rgba(255,255,255,.25);
+
+    transform:rotate(25deg);
+
+    transition:.6s;
+}
+
+.btn:hover::before{
+    left:150%;
+}
+
+/* ================= SECTIONS ================= */
+
 section{
     padding:110px 7%;
 }
@@ -271,43 +379,64 @@ section{
     color:#777;
 }
 
-/* Cards */
+/* ================= CARDS ================= */
+
 .grid{
     max-width:1200px;
     margin:auto;
+
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:22px;
 }
 
 .card{
     position:relative;
     overflow:hidden;
+
     padding:30px;
+
     min-height:220px;
-    background:linear-gradient(145deg,#111,#080808);
+
+    background:
+        linear-gradient(145deg,#111,#070707);
+
     border:1px solid #222;
+
     border-radius:18px;
+
     transition:.35s;
 }
 
 .card::before{
     content:"";
+
     position:absolute;
+
     width:180px;
     height:180px;
+
     background:#ff0000;
+
     filter:blur(90px);
+
     opacity:0;
+
     top:-90px;
     right:-90px;
+
     transition:.4s;
 }
 
 .card:hover{
     transform:translateY(-9px);
-    border-color:#b40000;
-    box-shadow:0 15px 50px rgba(255,0,0,.12);
+
+    border-color:#9f0000;
+
+    box-shadow:
+        0 15px 55px rgba(255,0,0,.15);
 }
 
 .card:hover::before{
@@ -316,7 +445,7 @@ section{
 
 .icon{
     font-size:35px;
-    margin-bottom:22px;
+    margin-bottom:20px;
 }
 
 .card h3{
@@ -329,39 +458,434 @@ section{
     line-height:1.7;
 }
 
-/* Pricing */
-.price-card{
+/* ================= PREMIUM ================= */
+
+.premium-section{
+    position:relative;
+    padding-top:130px;
+    padding-bottom:140px;
+}
+
+.premium-wrapper{
+    max-width:1000px;
+    margin:auto;
+    position:relative;
+}
+
+/* Outer glow */
+
+.premium-glow{
+    position:absolute;
+
+    inset:-80px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,0,0,.28),
+            transparent 65%
+        );
+
+    filter:blur(35px);
+
+    animation:premiumGlow 3s ease-in-out infinite alternate;
+
+    pointer-events:none;
+}
+
+@keyframes premiumGlow{
+    from{
+        opacity:.45;
+        transform:scale(.95);
+    }
+
+    to{
+        opacity:.9;
+        transform:scale(1.05);
+    }
+}
+
+/* Premium card */
+
+.premium-card{
+    position:relative;
+    overflow:hidden;
+
+    padding:65px 60px;
+
     text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #170000,
+            #080808 45%,
+            #150000
+        );
+
+    border:1px solid rgba(255,30,30,.65);
+
+    border-radius:28px;
+
+    box-shadow:
+        0 0 40px rgba(255,0,0,.18),
+        inset 0 0 50px rgba(255,0,0,.04);
+
+    transform:translateZ(0);
+
+    animation:premiumFloat 4s ease-in-out infinite;
 }
 
-.price{
-    font-size:45px;
-    font-weight:900;
-    margin:20px 0;
+@keyframes premiumFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-7px);
+    }
 }
 
-.price span{
-    font-size:14px;
-    color:#777;
+/* Moving shine */
+
+.premium-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+    left:-80%;
+
+    width:45%;
+    height:300%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.15),
+            transparent
+        );
+
+    transform:rotate(25deg);
+
+    animation:premiumShine 4s infinite;
 }
 
-.features{
-    list-style:none;
+@keyframes premiumShine{
+    0%{
+        left:-100%;
+    }
+
+    55%,100%{
+        left:150%;
+    }
+}
+
+/* Border animation */
+
+.premium-card::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:28px;
+
+    border:1px solid rgba(255,0,0,.35);
+
+    pointer-events:none;
+
+    animation:borderPulse 2s infinite alternate;
+}
+
+@keyframes borderPulse{
+    from{
+        opacity:.25;
+        box-shadow:0 0 5px rgba(255,0,0,.1);
+    }
+
+    to{
+        opacity:1;
+        box-shadow:
+            0 0 30px rgba(255,0,0,.25),
+            inset 0 0 25px rgba(255,0,0,.05);
+    }
+}
+
+.premium-badge{
+    position:relative;
+    z-index:2;
+
+    display:inline-block;
+
+    padding:10px 20px;
+
+    border-radius:100px;
+
+    background:#8d0000;
+
+    border:1px solid #ff3333;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:1000;
+
+    letter-spacing:2px;
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,.35);
+
+    animation:badgeFloat 2s infinite alternate;
+}
+
+@keyframes badgeFloat{
+    to{
+        transform:translateY(-3px);
+        box-shadow:
+            0 0 35px rgba(255,0,0,.55);
+    }
+}
+
+.premium-card h2{
+    position:relative;
+    z-index:2;
+
+    margin-top:25px;
+
+    font-size:clamp(38px,6vw,65px);
+
+    font-weight:1000;
+
+    letter-spacing:1px;
+}
+
+.premium-card h2 span{
+    color:#ff1616;
+
+    text-shadow:
+        0 0 20px rgba(255,0,0,.7),
+        0 0 55px rgba(255,0,0,.3);
+}
+
+.premium-description{
+    position:relative;
+    z-index:2;
+
+    max-width:650px;
+
+    margin:18px auto 30px;
+
+    color:#929292;
+
+    line-height:1.7;
+
+    font-size:17px;
+}
+
+.big-price{
+    position:relative;
+    z-index:2;
+
+    margin:20px 0 30px;
+
+    font-size:clamp(65px,9vw,105px);
+
+    font-weight:1000;
+
+    line-height:1;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,.12),
+        0 0 45px rgba(255,0,0,.35);
+
+    animation:priceGlow 2s infinite alternate;
+}
+
+.big-price small{
+    font-size:24px;
+    color:#ff2929;
+    vertical-align:top;
+    position:relative;
+    top:10px;
+}
+
+@keyframes priceGlow{
+    from{
+        transform:scale(1);
+        text-shadow:
+            0 0 15px rgba(255,0,0,.25);
+    }
+
+    to{
+        transform:scale(1.025);
+        text-shadow:
+            0 0 25px rgba(255,0,0,.55),
+            0 0 65px rgba(255,0,0,.25);
+    }
+}
+
+.premium-features{
+    position:relative;
+    z-index:2;
+
+    max-width:650px;
+
+    margin:0 auto 35px;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:12px;
+
     text-align:left;
-    margin:25px 0;
 }
 
-[dir="rtl"] .features{
+[dir="rtl"] .premium-features{
     text-align:right;
 }
 
-.features li{
-    color:#aaa;
-    padding:9px 0;
-    border-bottom:1px solid #1d1d1d;
+.feature{
+    padding:13px 15px;
+
+    background:rgba(255,0,0,.035);
+
+    border:1px solid rgba(255,0,0,.12);
+
+    border-radius:10px;
+
+    color:#c8c8c8;
+
+    transition:.3s;
 }
 
-/* FAQ */
+.feature:hover{
+    border-color:rgba(255,0,0,.5);
+
+    background:rgba(255,0,0,.08);
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(255,0,0,.12);
+}
+
+.feature span{
+    color:#ff1c1c;
+    margin-right:8px;
+}
+
+[dir="rtl"] .feature span{
+    margin-right:0;
+    margin-left:8px;
+}
+
+/* Premium buy button */
+
+.buy-premium{
+    position:relative;
+    z-index:2;
+
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-width:280px;
+
+    padding:18px 38px;
+
+    border-radius:13px;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff1717,
+            #9c0000
+        );
+
+    border:1px solid #ff4b4b;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    font-weight:1000;
+
+    letter-spacing:1px;
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,.4),
+        0 10px 35px rgba(255,0,0,.15);
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.buy-premium:hover{
+    transform:translateY(-5px) scale(1.04);
+
+    box-shadow:
+        0 0 45px rgba(255,0,0,.65),
+        0 15px 50px rgba(255,0,0,.3);
+}
+
+.buy-premium::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:60%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.4),
+            transparent
+        );
+
+    transform:skewX(-25deg);
+
+    animation:buyShine 2.8s infinite;
+}
+
+@keyframes buyShine{
+    0%{
+        left:-120%;
+    }
+
+    55%,100%{
+        left:140%;
+    }
+}
+
+.payment-note{
+    position:relative;
+    z-index:2;
+
+    margin-top:18px;
+
+    color:#555;
+
+    font-size:12px;
+}
+
+/* ================= FAQ ================= */
+
 .faq{
     max-width:850px;
     margin:auto;
@@ -369,10 +893,20 @@ section{
 
 .faq-item{
     background:#0c0c0c;
+
     border:1px solid #222;
+
     border-radius:13px;
+
     padding:22px;
+
     margin-bottom:12px;
+
+    transition:.3s;
+}
+
+.faq-item:hover{
+    border-color:#550000;
 }
 
 .faq-item h3{
@@ -384,11 +918,15 @@ section{
     line-height:1.7;
 }
 
-/* Footer */
+/* ================= FOOTER ================= */
+
 footer{
     padding:50px 20px;
+
     text-align:center;
+
     border-top:1px solid #1b1b1b;
+
     color:#666;
 }
 
@@ -396,7 +934,8 @@ footer strong{
     color:#ff2020;
 }
 
-/* RTL */
+/* ================= RTL ================= */
+
 [dir="rtl"] nav ul{
     direction:rtl;
 }
@@ -414,13 +953,23 @@ footer strong{
     text-align:right;
 }
 
-/* Ripple */
+[dir="rtl"] .premium-card{
+    direction:rtl;
+}
+
+/* ================= RIPPLE ================= */
+
 .ripple{
     position:absolute;
+
     border-radius:50%;
+
     transform:scale(0);
+
     animation:ripple .6s linear;
+
     background:rgba(255,255,255,.35);
+
     pointer-events:none;
 }
 
@@ -431,8 +980,10 @@ footer strong{
     }
 }
 
-/* Mobile */
+/* ================= MOBILE ================= */
+
 @media(max-width:850px){
+
     nav{
         padding:15px 4%;
     }
@@ -451,6 +1002,20 @@ footer strong{
 
     .hero h1{
         font-size:55px;
+        letter-spacing:-3px;
+    }
+
+    .premium-card{
+        padding:45px 20px;
+    }
+
+    .premium-features{
+        grid-template-columns:1fr;
+    }
+
+    .buy-premium{
+        width:100%;
+        min-width:0;
     }
 }
 </style>
@@ -464,141 +1029,278 @@ footer strong{
 <div class="light"></div>
 
 <!-- NAVBAR -->
+
 <nav>
-    <div class="logo">48 <span>STORE</span></div>
+
+    <div class="logo">
+        48 <span>STORE</span>
+    </div>
 
     <ul>
-        <li><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a></li>
-        <li><a href="#tweaks" data-en="Tweaks" data-ar="التعديلات">Tweaks</a></li>
-        <li><a href="#fortnite" data-en="Fortnite" data-ar="فورتنايت">Fortnite</a></li>
-        <li><a href="#pricing" data-en="Pricing" data-ar="الأسعار">Pricing</a></li>
-        <li><a href="#faq" data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</a></li>
+
+        <li>
+            <a href="#home"
+               data-en="Home"
+               data-ar="الرئيسية">
+               Home
+            </a>
+        </li>
+
+        <li>
+            <a href="#tweaks"
+               data-en="Tweaks"
+               data-ar="التعديلات">
+               Tweaks
+            </a>
+        </li>
+
+        <li>
+            <a href="#fortnite"
+               data-en="Fortnite"
+               data-ar="فورتنايت">
+               Fortnite
+            </a>
+        </li>
+
+        <li>
+            <a href="#premium"
+               data-en="Premium"
+               data-ar="بريميوم">
+               Premium
+            </a>
+        </li>
+
+        <li>
+            <a href="#faq"
+               data-en="FAQ"
+               data-ar="الأسئلة الشائعة">
+               FAQ
+            </a>
+        </li>
+
     </ul>
 
     <div class="lang">
-        <button id="enBtn" class="active" onclick="setLanguage('en')">EN</button>
-        <button id="arBtn" onclick="setLanguage('ar')">AR</button>
+
+        <button
+            id="enBtn"
+            class="active"
+            onclick="setLanguage('en')">
+            EN
+        </button>
+
+        <button
+            id="arBtn"
+            onclick="setLanguage('ar')">
+            AR
+        </button>
+
     </div>
+
 </nav>
 
 <!-- HERO -->
+
 <section class="hero" id="home">
+
     <div class="hero-content">
 
         <div class="badge"
              data-en="NEXT GENERATION GAMING"
              data-ar="الجيل الجديد من تحسين الألعاب">
+
             NEXT GENERATION GAMING
+
         </div>
 
         <h1>
+
             PLAY FASTER.<br>
+
             <span>PLAY BETTER.</span>
+
         </h1>
 
         <p
             data-en="Professional gaming tweaks designed to improve performance, reduce unnecessary background usage and give you a smoother gaming experience."
             data-ar="تعديلات احترافية للألعاب مصممة لتحسين الأداء وتقليل استهلاك البرامج في الخلفية ومنحك تجربة لعب أكثر سلاسة.">
-            Professional gaming tweaks designed to improve performance, reduce unnecessary background usage and give you a smoother gaming experience.
+
+            Professional gaming tweaks designed to improve performance,
+            reduce unnecessary background usage and give you a smoother gaming experience.
+
         </p>
 
         <div class="buttons">
-            <a href="#pricing"
-               class="btn btn-primary"
-               data-en="GET STARTED"
-               data-ar="ابدأ الآن">
-               GET STARTED
+
+            <a
+                href="#premium"
+                class="btn btn-primary"
+                data-en="VIEW PREMIUM"
+                data-ar="شاهد البريميوم">
+
+                VIEW PREMIUM
+
             </a>
 
-            <a href="#tweaks"
-               class="btn btn-secondary"
-               data-en="EXPLORE TWEAKS"
-               data-ar="استكشف التعديلات">
-               EXPLORE TWEAKS
+            <a
+                href="#tweaks"
+                class="btn btn-secondary"
+                data-en="EXPLORE"
+                data-ar="استكشف">
+
+                EXPLORE
+
             </a>
+
         </div>
 
     </div>
+
 </section>
 
 <!-- TWEAKS -->
+
 <section id="tweaks">
 
     <div class="section-title">
-        <h2 data-en="Gaming Tweaks" data-ar="تعديلات الألعاب">
+
+        <h2
+            data-en="Gaming Tweaks"
+            data-ar="تعديلات الألعاب">
+
             Gaming Tweaks
+
         </h2>
 
         <p
             data-en="Built for gamers who want more from their PC."
             data-ar="مصممة للاعبين الذين يريدون أفضل أداء من جهاز الكمبيوتر.">
+
             Built for gamers who want more from their PC.
+
         </p>
+
     </div>
 
     <div class="grid">
 
         <div class="card">
+
             <div class="icon">⚡</div>
-            <h3 data-en="Performance" data-ar="الأداء">Performance</h3>
+
+            <h3
+                data-en="Performance"
+                data-ar="الأداء">
+
+                Performance
+
+            </h3>
+
             <p
                 data-en="Optimize Windows settings and background processes for a cleaner gaming environment."
                 data-ar="تحسين إعدادات Windows والعمليات التي تعمل في الخلفية للحصول على بيئة أفضل للألعاب.">
-                Optimize Windows settings and background processes for a cleaner gaming environment.
+
+                Optimize Windows settings and background processes
+                for a cleaner gaming environment.
+
             </p>
+
         </div>
 
         <div class="card">
+
             <div class="icon">🎯</div>
-            <h3 data-en="Input Response" data-ar="استجابة الإدخال">Input Response</h3>
+
+            <h3
+                data-en="Input Response"
+                data-ar="استجابة الإدخال">
+
+                Input Response
+
+            </h3>
+
             <p
                 data-en="Reduce unnecessary input delay and improve the overall responsiveness of your system."
                 data-ar="تقليل التأخير غير الضروري في الإدخال وتحسين استجابة النظام بشكل عام.">
-                Reduce unnecessary input delay and improve the overall responsiveness of your system.
+
+                Reduce unnecessary input delay and improve the overall
+                responsiveness of your system.
+
             </p>
+
         </div>
 
         <div class="card">
+
             <div class="icon">🚀</div>
-            <h3 data-en="FPS Stability" data-ar="ثبات الفريمات">FPS Stability</h3>
+
+            <h3
+                data-en="FPS Stability"
+                data-ar="ثبات الفريمات">
+
+                FPS Stability
+
+            </h3>
+
             <p
                 data-en="Focus on a smoother frame-time experience and more consistent gameplay."
                 data-ar="التركيز على تجربة أكثر سلاسة وثباتًا في الفريمات أثناء اللعب.">
-                Focus on a smoother frame-time experience and more consistent gameplay.
+
+                Focus on a smoother frame-time experience
+                and more consistent gameplay.
+
             </p>
+
         </div>
 
     </div>
+
 </section>
 
 <!-- FORTNITE -->
+
 <section id="fortnite">
 
     <div class="section-title">
-        <h2 data-en="Fortnite" data-ar="فورتنايت">Fortnite</h2>
+
+        <h2
+            data-en="Fortnite"
+            data-ar="فورتنايت">
+
+            Fortnite
+
+        </h2>
 
         <p
             data-en="Performance tools created with competitive Fortnite players in mind."
             data-ar="أدوات لتحسين الأداء مصممة خصيصًا للاعبي فورتنايت التنافسيين.">
+
             Performance tools created with competitive Fortnite players in mind.
+
         </p>
+
     </div>
 
     <div class="grid">
 
         <div class="card">
+
             <div class="icon">🔥</div>
 
             <h3
                 data-en="Fortnite Performance Pack"
                 data-ar="حزمة تحسين أداء فورتنايت">
+
                 Fortnite Performance Pack
+
             </h3>
 
             <p
                 data-en="Free optimization pack for improving your Fortnite setup."
                 data-ar="حزمة تحسين مجانية لتحسين إعدادات فورتنايت على جهازك.">
+
                 Free optimization pack for improving your Fortnite setup.
+
             </p>
 
             <br>
@@ -609,244 +1311,456 @@ footer strong{
                 download
                 data-en="DOWNLOAD FREE"
                 data-ar="تحميل مجاني">
+
                 DOWNLOAD FREE
+
             </a>
+
         </div>
 
         <div class="card">
+
             <div class="icon">💻</div>
 
             <h3
                 data-en="Competitive Setup"
                 data-ar="إعداد تنافسي">
+
                 Competitive Setup
+
             </h3>
 
             <p
                 data-en="Designed for players who want a clean and responsive competitive setup."
                 data-ar="مصمم للاعبين الذين يريدون إعدادًا تنافسيًا سريعًا وسلسًا.">
-                Designed for players who want a clean and responsive competitive setup.
+
+                Designed for players who want a clean
+                and responsive competitive setup.
+
             </p>
+
         </div>
 
         <div class="card">
+
             <div class="icon">⚙️</div>
 
             <h3
                 data-en="System Optimization"
                 data-ar="تحسين النظام">
+
                 System Optimization
+
             </h3>
 
             <p
                 data-en="Improve system efficiency by reducing unnecessary background activity."
                 data-ar="تحسين كفاءة النظام من خلال تقليل النشاط غير الضروري في الخلفية.">
-                Improve system efficiency by reducing unnecessary background activity.
+
+                Improve system efficiency by reducing
+                unnecessary background activity.
+
             </p>
+
         </div>
 
     </div>
+
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
+<!-- PREMIUM -->
+
+<section id="premium" class="premium-section">
 
     <div class="section-title">
-        <h2 data-en="Choose Your Pack" data-ar="اختر الحزمة المناسبة">
-            Choose Your Pack
+
+        <h2
+            data-en="Premium"
+            data-ar="البريميوم">
+
+            Premium
+
         </h2>
 
         <p
-            data-en="Simple plans. Powerful optimization."
-            data-ar="خطط بسيطة وتحسينات قوية.">
-            Simple plans. Powerful optimization.
+            data-en="Take your gaming setup to the next level."
+            data-ar="ارفع مستوى إعدادات الألعاب لديك إلى مستوى جديد.">
+
+            Take your gaming setup to the next level.
+
         </p>
+
     </div>
 
-    <div class="grid">
+    <div class="premium-wrapper">
 
-        <div class="card price-card">
-            <h3 data-en="FREE" data-ar="مجاني">FREE</h3>
+        <div class="premium-glow"></div>
 
-            <div class="price">$0</div>
+        <div class="premium-card">
 
-            <ul class="features">
-                <li data-en="Basic tweaks" data-ar="تعديلات أساسية">Basic tweaks</li>
-                <li data-en="Fortnite performance pack" data-ar="حزمة أداء فورتنايت">Fortnite performance pack</li>
-                <li data-en="Basic optimization" data-ar="تحسين أساسي">Basic optimization</li>
-            </ul>
+            <div class="premium-badge"
+                 data-en="48 STORE PREMIUM"
+                 data-ar="48 STORE بريميوم">
 
-            <a
-                href="GNE_Fortnite_Performance_Pack.zip"
-                download
-                class="btn btn-secondary"
-                data-en="DOWNLOAD"
-                data-ar="تحميل">
-                DOWNLOAD
-            </a>
-        </div>
+                48 STORE PREMIUM
 
-        <div class="card price-card">
-            <h3 data-en="PREMIUM" data-ar="بريميوم">PREMIUM</h3>
+            </div>
 
-            <div class="price">$9.99</div>
+            <h2>
+                <span
+                    data-en="ULTIMATE"
+                    data-ar="ألتيميت">
+                    ULTIMATE
+                </span>
 
-            <ul class="features">
-                <li data-en="Advanced tweaks" data-ar="تعديلات متقدمة">Advanced tweaks</li>
-                <li data-en="Gaming optimization" data-ar="تحسين الألعاب">Gaming optimization</li>
-                <li data-en="Performance focused settings" data-ar="إعدادات مخصصة للأداء">Performance focused settings</li>
-            </ul>
+                GAMING PACK
+            </h2>
+
+            <p class="premium-description"
+               data-en="A premium gaming optimization package designed for players who want a cleaner, faster and more responsive setup."
+               data-ar="حزمة تحسين ألعاب مميزة مصممة للاعبين الذين يريدون إعدادًا أسرع وأنظف وأكثر استجابة.">
+
+                A premium gaming optimization package designed
+                for players who want a cleaner, faster and more responsive setup.
+
+            </p>
+
+            <div class="big-price">
+
+                <small>$</small>30
+
+            </div>
+
+            <div class="premium-features">
+
+                <div class="feature">
+                    <span>✓</span>
+                    <span
+                        data-en="Advanced Performance Tweaks"
+                        data-ar="تعديلات أداء متقدمة">
+                        Advanced Performance Tweaks
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <span>✓</span>
+                    <span
+                        data-en="Fortnite Optimization"
+                        data-ar="تحسين فورتنايت">
+                        Fortnite Optimization
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <span>✓</span>
+                    <span
+                        data-en="Input Response Optimization"
+                        data-ar="تحسين استجابة الإدخال">
+                        Input Response Optimization
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <span>✓</span>
+                    <span
+                        data-en="FPS Stability Settings"
+                        data-ar="إعدادات ثبات الفريمات">
+                        FPS Stability Settings
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <span>✓</span>
+                    <span
+                        data-en="Windows Gaming Optimization"
+                        data-ar="تحسين Windows للألعاب">
+                        Windows Gaming Optimization
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <span>✓</span>
+                    <span
+                        data-en="Premium Configuration"
+                        data-ar="إعدادات Premium">
+                        Premium Configuration
+                    </span>
+                </div>
+
+            </div>
 
             <a
                 href="#"
-                class="btn btn-primary"
-                data-en="GET PREMIUM"
-                data-ar="احصل على بريميوم">
-                GET PREMIUM
+                class="buy-premium"
+                data-en="BUY PREMIUM — $30"
+                data-ar="شراء Premium — $30">
+
+                BUY PREMIUM — $30
+
             </a>
-        </div>
 
-        <div class="card price-card">
-            <h3 data-en="ULTIMATE" data-ar="ألتيميت">ULTIMATE</h3>
+            <div class="payment-note"
+                 data-en="Secure payment • Instant access after purchase"
+                 data-ar="دفع آمن • وصول فوري بعد إتمام الشراء">
 
-            <div class="price">$19.99</div>
+                Secure payment • Instant access after purchase
 
-            <ul class="features">
-                <li data-en="Full optimization" data-ar="تحسين كامل">Full optimization</li>
-                <li data-en="Advanced gaming tweaks" data-ar="تعديلات ألعاب متقدمة">Advanced gaming tweaks</li>
-                <li data-en="Ultimate performance setup" data-ar="إعداد أداء Ultimate">Ultimate performance setup</li>
-            </ul>
+            </div>
 
-            <a
-                href="#"
-                class="btn btn-primary"
-                data-en="GET ULTIMATE"
-                data-ar="احصل على ألتيميت">
-                GET ULTIMATE
-            </a>
         </div>
 
     </div>
+
 </section>
 
 <!-- FAQ -->
+
 <section id="faq">
 
     <div class="section-title">
-        <h2 data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</h2>
+
+        <h2
+            data-en="FAQ"
+            data-ar="الأسئلة الشائعة">
+
+            FAQ
+
+        </h2>
 
         <p
             data-en="Everything you need to know."
             data-ar="كل ما تحتاج إلى معرفته.">
+
             Everything you need to know.
+
         </p>
+
     </div>
 
     <div class="faq">
 
         <div class="faq-item">
+
             <h3
-                data-en="Is the Free Pack really free?"
-                data-ar="هل الحزمة المجانية مجانية فعلًا؟">
-                Is the Free Pack really free?
+                data-en="What is the Premium Pack?"
+                data-ar="ما هي حزمة Premium؟">
+
+                What is the Premium Pack?
+
             </h3>
 
             <p
-                data-en="Yes. The Free Fortnite Performance Pack can be downloaded directly from the website."
-                data-ar="نعم. يمكنك تحميل حزمة تحسين أداء فورتنايت المجانية مباشرة من الموقع.">
-                Yes. The Free Fortnite Performance Pack can be downloaded directly from the website.
+                data-en="It is a premium gaming optimization package containing advanced configuration and performance-focused settings."
+                data-ar="هي حزمة تحسين ألعاب مميزة تحتوي على إعدادات متقدمة وإعدادات مخصصة لتحسين الأداء.">
+
+                It is a premium gaming optimization package
+                containing advanced configuration and performance-focused settings.
+
             </p>
+
         </div>
 
         <div class="faq-item">
+
             <h3
-                data-en="Will the tweaks increase my FPS?"
-                data-ar="هل التعديلات سترفع الـ FPS؟">
-                Will the tweaks increase my FPS?
+                data-en="Can I use the Premium Pack for Fortnite?"
+                data-ar="هل يمكنني استخدام Premium لفورتنايت؟">
+
+                Can I use the Premium Pack for Fortnite?
+
             </h3>
 
             <p
-                data-en="Results depend on your hardware and settings. The goal is to optimize the system and improve consistency."
-                data-ar="النتائج تختلف حسب جهازك وإعداداتك. الهدف هو تحسين النظام وزيادة استقرار الأداء.">
-                Results depend on your hardware and settings. The goal is to optimize the system and improve consistency.
+                data-en="Yes. The package is designed with Fortnite performance and responsiveness in mind."
+                data-ar="نعم. الحزمة مصممة مع التركيز على أداء واستجابة فورتنايت.">
+
+                Yes. The package is designed with Fortnite performance
+                and responsiveness in mind.
+
             </p>
+
         </div>
 
         <div class="faq-item">
+
             <h3
                 data-en="Can I switch between English and Arabic?"
                 data-ar="هل أستطيع التبديل بين العربية والإنجليزية؟">
+
                 Can I switch between English and Arabic?
+
             </h3>
 
             <p
                 data-en="Yes. Use the EN / AR buttons at the top of the website."
                 data-ar="نعم. استخدم أزرار EN / AR الموجودة في أعلى الموقع.">
+
                 Yes. Use the EN / AR buttons at the top of the website.
+
             </p>
+
         </div>
 
     </div>
+
 </section>
 
 <!-- FOOTER -->
+
 <footer>
+
     <p>
-        © 2026 <strong>48 Store</strong> —
+
+        © 2026
+
+        <strong>48 Store</strong>
+
+        —
+
         <span
-            data-en="Gaming Tweaks & Performance"
+            data-en="Premium Gaming Tweaks & Performance"
             data-ar="تعديلات الألعاب وتحسين الأداء">
-            Gaming Tweaks & Performance
+
+            Premium Gaming Tweaks & Performance
+
         </span>
+
     </p>
+
 </footer>
 
 <script>
 
-/* Language */
+/* ================= LANGUAGE ================= */
+
 function setLanguage(lang){
 
     document.documentElement.lang = lang;
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+    document.documentElement.dir =
+        lang === "ar" ? "rtl" : "ltr";
 
     document.querySelectorAll("[data-en]").forEach(el=>{
-        el.textContent = el.getAttribute("data-" + lang);
+
+        const text =
+            el.getAttribute("data-" + lang);
+
+        if(text){
+            el.textContent = text;
+        }
+
     });
 
-    document.getElementById("enBtn").classList.toggle("active",lang === "en");
-    document.getElementById("arBtn").classList.toggle("active",lang === "ar");
+    document
+        .getElementById("enBtn")
+        .classList
+        .toggle("active",lang === "en");
 
-    localStorage.setItem("48store-language",lang);
+    document
+        .getElementById("arBtn")
+        .classList
+        .toggle("active",lang === "ar");
+
+    localStorage.setItem(
+        "48store-language",
+        lang
+    );
 }
 
-/* Load saved language */
-const savedLanguage = localStorage.getItem("48store-language") || "en";
+/* Load language */
+
+const savedLanguage =
+    localStorage.getItem("48store-language") || "en";
+
 setLanguage(savedLanguage);
 
 
-/* Button ripple effect */
-document.querySelectorAll(".btn").forEach(button=>{
+/* ================= RIPPLE ================= */
+
+document
+.querySelectorAll(".btn,.buy-premium")
+.forEach(button=>{
 
     button.addEventListener("click",function(e){
 
-        const circle = document.createElement("span");
-        const diameter = Math.max(this.clientWidth,this.clientHeight);
+        const circle =
+            document.createElement("span");
 
-        circle.style.width = circle.style.height = diameter + "px";
+        const diameter =
+            Math.max(
+                this.clientWidth,
+                this.clientHeight
+            );
 
-        const rect = this.getBoundingClientRect();
+        circle.style.width =
+            circle.style.height =
+            diameter + "px";
 
-        circle.style.left = e.clientX - rect.left - diameter / 2 + "px";
-        circle.style.top = e.clientY - rect.top - diameter / 2 + "px";
+        const rect =
+            this.getBoundingClientRect();
+
+        circle.style.left =
+            e.clientX -
+            rect.left -
+            diameter / 2 +
+            "px";
+
+        circle.style.top =
+            e.clientY -
+            rect.top -
+            diameter / 2 +
+            "px";
 
         circle.classList.add("ripple");
 
-        const oldRipple = this.querySelector(".ripple");
-        if(oldRipple) oldRipple.remove();
+        const oldRipple =
+            this.querySelector(".ripple");
+
+        if(oldRipple){
+            oldRipple.remove();
+        }
 
         this.appendChild(circle);
+
     });
+
 });
+
+
+/* ================= PREMIUM MOUSE EFFECT ================= */
+
+const premium =
+    document.querySelector(".premium-card");
+
+if(premium){
+
+    premium.addEventListener(
+        "mousemove",
+        function(e){
+
+            const rect =
+                premium.getBoundingClientRect();
+
+            const x =
+                e.clientX - rect.left;
+
+            const y =
+                e.clientY - rect.top;
+
+            premium.style.setProperty(
+                "--mouse-x",
+                x + "px"
+            );
+
+            premium.style.setProperty(
+                "--mouse-y",
+                y + "px"
+            );
+
+        }
+    );
+
+}
 
 </script>
 
