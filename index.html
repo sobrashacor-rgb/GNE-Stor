@@ -1,24 +1,13 @@
 ```html
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>48 Store</title>
+<title>GNE STORE</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-:root{
-    --green:#00ff9d;
-    --green2:#00c878;
-    --purple:#a800ff;
-    --purple2:#6d00ff;
-    --black:#030305;
-    --card:rgba(13,13,18,.78);
-    --border:rgba(255,255,255,.09);
-    --muted:#858590;
-}
 
 *{
     margin:0;
@@ -31,75 +20,87 @@ html{
 }
 
 body{
-    font-family:'Inter',sans-serif;
-    background:var(--black);
+    font-family:Inter,Arial,sans-serif;
+    background:#020204;
     color:#fff;
     overflow-x:hidden;
 }
 
 /* ================= BACKGROUND ================= */
 
-body:before{
+body::before{
     content:"";
     position:fixed;
     inset:0;
-    z-index:-10;
+    pointer-events:none;
+    z-index:-5;
     background:
-        radial-gradient(circle at 5% 15%,rgba(0,255,157,.13),transparent 28%),
-        radial-gradient(circle at 95% 20%,rgba(168,0,255,.16),transparent 30%),
-        radial-gradient(circle at 50% 100%,rgba(109,0,255,.09),transparent 35%),
-        #030305;
+        radial-gradient(circle at 15% 20%,rgba(0,255,170,.12),transparent 30%),
+        radial-gradient(circle at 85% 25%,rgba(150,0,255,.14),transparent 32%),
+        radial-gradient(circle at 50% 90%,rgba(0,120,255,.08),transparent 30%);
 }
 
-body:after{
-    content:"";
+.grid{
     position:fixed;
     inset:0;
-    z-index:-9;
-    opacity:.15;
+    z-index:-4;
+    opacity:.22;
     background-image:
-        linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
-    background-size:60px 60px;
-    mask-image:linear-gradient(to bottom,#000 30%,transparent 100%);
+        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:55px 55px;
+    mask-image:linear-gradient(to bottom,black,transparent 90%);
 }
-
-/* Moving lights */
 
 .orb{
     position:fixed;
     border-radius:50%;
-    filter:blur(100px);
+    filter:blur(80px);
     pointer-events:none;
-    z-index:-8;
+    z-index:-3;
+    opacity:.35;
 }
 
-.orb.green{
-    width:450px;
-    height:450px;
-    background:var(--green);
-    opacity:.12;
-    left:-220px;
-    top:10%;
-    animation:orbGreen 12s ease-in-out infinite alternate;
+.orb.one{
+    width:300px;
+    height:300px;
+    background:#00ffa6;
+    left:-100px;
+    top:25%;
+    animation:float1 9s ease-in-out infinite;
 }
 
-.orb.purple{
-    width:500px;
-    height:500px;
-    background:var(--purple);
-    opacity:.12;
-    right:-250px;
+.orb.two{
+    width:340px;
+    height:340px;
+    background:#9d00ff;
+    right:-100px;
     top:35%;
-    animation:orbPurple 14s ease-in-out infinite alternate;
+    animation:float2 11s ease-in-out infinite;
 }
 
-@keyframes orbGreen{
-    to{transform:translate(260px,180px) scale(1.2)}
+.orb.three{
+    width:250px;
+    height:250px;
+    background:#0066ff;
+    left:40%;
+    bottom:-100px;
+    animation:float3 10s ease-in-out infinite;
 }
 
-@keyframes orbPurple{
-    to{transform:translate(-220px,-150px) scale(1.25)}
+@keyframes float1{
+    0%,100%{transform:translate(0,0)}
+    50%{transform:translate(80px,-70px)}
+}
+
+@keyframes float2{
+    0%,100%{transform:translate(0,0)}
+    50%{transform:translate(-90px,70px)}
+}
+
+@keyframes float3{
+    0%,100%{transform:translate(0,0)}
+    50%{transform:translate(50px,-80px)}
 }
 
 /* ================= PARTICLES ================= */
@@ -107,963 +108,673 @@ body:after{
 .particles{
     position:fixed;
     inset:0;
-    z-index:-5;
-    overflow:hidden;
     pointer-events:none;
+    z-index:-2;
 }
 
-.particles i{
+.particle{
     position:absolute;
     width:3px;
     height:3px;
     border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 15px var(--green);
-    animation:particle linear infinite;
+    background:#fff;
+    opacity:.35;
+    animation:particleMove linear infinite;
 }
 
-.particles i:nth-child(3n){
-    background:var(--purple);
-    box-shadow:0 0 15px var(--purple);
-}
-
-@keyframes particle{
+@keyframes particleMove{
     from{
-        transform:translateY(110vh) translateX(0);
+        transform:translateY(110vh);
         opacity:0;
     }
-    15%{opacity:.8}
-    85%{opacity:.8}
+    20%{opacity:.5}
+    80%{opacity:.4}
     to{
-        transform:translateY(-10vh) translateX(130px);
+        transform:translateY(-10vh);
         opacity:0;
     }
 }
 
-/* ================= NAV ================= */
+/* ================= NAVBAR ================= */
 
-nav{
+.navbar{
     position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    height:78px;
-    z-index:100;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(1180px,calc(100% - 30px));
+    height:68px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 5%;
-    background:rgba(3,3,5,.72);
+    padding:0 22px;
+    z-index:100;
+    background:rgba(10,10,15,.55);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:22px;
     backdrop-filter:blur(22px);
-    border-bottom:1px solid rgba(255,255,255,.07);
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
 }
 
 .logo{
-    font-size:25px;
+    display:flex;
+    align-items:center;
+    gap:11px;
     font-weight:900;
-    letter-spacing:-1px;
+    letter-spacing:2px;
+    font-size:19px;
 }
 
-.logo span{
-    color:var(--green);
-    text-shadow:0 0 25px rgba(0,255,157,.55);
+.logo-mark{
+    width:34px;
+    height:34px;
+    border-radius:11px;
+    background:linear-gradient(135deg,#00ffa6,#8d00ff);
+    box-shadow:0 0 25px rgba(0,255,166,.35);
+    display:grid;
+    place-items:center;
+    color:#050505;
+    font-size:13px;
 }
 
 .nav-links{
     display:flex;
-    align-items:center;
     gap:28px;
 }
 
 .nav-links a{
-    color:#8c8c96;
+    color:#aaa;
     text-decoration:none;
     font-size:13px;
-    font-weight:700;
+    font-weight:600;
     transition:.3s;
 }
 
 .nav-links a:hover{
     color:#fff;
-    text-shadow:0 0 15px var(--green);
 }
 
-.lang{
-    display:flex;
-    gap:4px;
-    padding:4px;
-    border:1px solid var(--border);
-    border-radius:11px;
-}
-
-.lang button{
-    border:0;
-    background:transparent;
-    color:#777;
-    padding:7px 10px;
-    border-radius:7px;
+.nav-btn{
+    border:1px solid rgba(255,255,255,.14);
+    background:rgba(255,255,255,.05);
+    color:#fff;
+    padding:11px 17px;
+    border-radius:13px;
     cursor:pointer;
-    font-size:11px;
-    font-weight:800;
+    transition:.3s;
 }
 
-.lang button.active{
-    background:var(--green);
-    color:#020503;
+.nav-btn:hover{
+    border-color:#00ffa6;
+    box-shadow:0 0 25px rgba(0,255,166,.12);
 }
 
 /* ================= HERO ================= */
 
 .hero{
-    min-height:900px;
-    position:relative;
+    min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:140px 3% 100px;
-}
-
-.hero-layout{
-    width:100%;
-    max-width:1500px;
-    display:grid;
-    grid-template-columns:250px minmax(450px,1fr) 250px;
-    align-items:center;
-    gap:35px;
-}
-
-/* Side cards */
-
-.side-column{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-}
-
-.side-card{
+    padding:150px 25px 90px;
     position:relative;
-    padding:22px;
-    min-height:130px;
-    border:1px solid var(--border);
-    border-radius:22px;
-    background:rgba(10,10,14,.68);
-    backdrop-filter:blur(15px);
-    overflow:hidden;
-    transition:.4s;
 }
 
-.side-card:hover{
-    transform:translateY(-8px) scale(1.02);
-    border-color:rgba(0,255,157,.4);
-    box-shadow:0 20px 50px rgba(0,0,0,.4);
-}
-
-.side-card:after{
-    content:"";
-    position:absolute;
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    background:var(--green);
-    filter:blur(50px);
-    opacity:.1;
-    right:-40px;
-    top:-40px;
-}
-
-.side-card.purple:after{
-    background:var(--purple);
-}
-
-.side-icon{
-    font-size:25px;
-    margin-bottom:12px;
-}
-
-.side-card h4{
-    font-size:14px;
-    margin-bottom:6px;
-}
-
-.side-card p{
-    color:#777781;
-    font-size:11px;
-    line-height:1.6;
-}
-
-/* Center */
-
-.hero-center{
+.hero-wrap{
+    width:min(1200px,100%);
     text-align:center;
-    position:relative;
-}
-
-.hero-center:before{
-    content:"";
-    position:absolute;
-    width:550px;
-    height:550px;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    background:radial-gradient(circle,rgba(0,255,157,.1),transparent 65%);
-    z-index:-1;
 }
 
 .badge{
     display:inline-flex;
     align-items:center;
     gap:9px;
-    padding:9px 17px;
-    border-radius:50px;
-    border:1px solid rgba(0,255,157,.22);
-    background:rgba(0,255,157,.055);
-    color:var(--green);
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:2px;
-    margin-bottom:27px;
+    padding:9px 15px;
+    border-radius:100px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.11);
+    backdrop-filter:blur(15px);
+    color:#cfcfcf;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    animation:fadeUp .8s ease both;
 }
 
 .badge span{
     width:7px;
     height:7px;
+    background:#00ffa6;
     border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 15px var(--green);
-    animation:blink 1.4s infinite;
+    box-shadow:0 0 15px #00ffa6;
+    animation:pulse 1.5s infinite;
 }
 
-@keyframes blink{
-    50%{opacity:.2;transform:scale(.6)}
+@keyframes pulse{
+    50%{transform:scale(1.6);opacity:.5}
 }
 
 .hero h1{
-    font-size:clamp(75px,10vw,145px);
-    line-height:.82;
-    letter-spacing:-9px;
+    margin-top:28px;
+    font-size:clamp(65px,11vw,145px);
+    line-height:.88;
+    letter-spacing:-7px;
     font-weight:900;
     background:linear-gradient(
         100deg,
-        #fff 10%,
-        var(--green) 35%,
-        #fff 48%,
-        var(--purple) 72%,
+        #fff 5%,
+        #b9ffe9 28%,
+        #00ffa6 48%,
+        #a700ff 70%,
         #fff 95%
     );
     background-size:250% auto;
     -webkit-background-clip:text;
+    background-clip:text;
     color:transparent;
-    animation:titleGradient 5s linear infinite;
-    text-shadow:0 0 70px rgba(0,255,157,.08);
+    animation:gradientMove 6s linear infinite,fadeUp 1s ease both;
+    filter:drop-shadow(0 0 35px rgba(0,255,166,.13));
 }
 
-@keyframes titleGradient{
+@keyframes gradientMove{
     to{background-position:250% center}
 }
 
-.hero-subtitle{
+.hero-sub{
     max-width:650px;
-    margin:32px auto 0;
-    color:#92929b;
-    font-size:17px;
+    margin:30px auto 0;
+    color:#999;
     line-height:1.8;
+    font-size:16px;
+    animation:fadeUp 1.2s ease both;
 }
 
 .hero-buttons{
+    margin-top:35px;
     display:flex;
     justify-content:center;
-    gap:14px;
+    gap:13px;
     flex-wrap:wrap;
-    margin-top:35px;
+    animation:fadeUp 1.4s ease both;
 }
 
 .btn{
     position:relative;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:190px;
-    padding:16px 25px;
-    border-radius:14px;
-    text-decoration:none;
-    font-size:12px;
-    font-weight:900;
     overflow:hidden;
+    text-decoration:none;
+    color:#fff;
+    padding:15px 25px;
+    border-radius:15px;
+    font-size:13px;
+    font-weight:800;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.055);
+    backdrop-filter:blur(18px);
     transition:.35s;
 }
 
-.btn-green{
-    color:#020604;
-    background:var(--green);
-    box-shadow:0 0 30px rgba(0,255,157,.22);
+.btn.primary{
+    color:#020204;
+    background:linear-gradient(110deg,#00ffa6,#8d00ff);
+    border:0;
+    box-shadow:0 0 35px rgba(0,255,166,.16);
 }
 
-.btn-green:hover{
-    transform:translateY(-6px);
-    box-shadow:0 0 50px rgba(0,255,157,.45);
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
 }
 
-.btn-purple{
-    color:#fff;
-    background:rgba(168,0,255,.08);
-    border:1px solid rgba(168,0,255,.42);
-}
-
-.btn-purple:hover{
-    transform:translateY(-6px);
-    box-shadow:0 0 45px rgba(168,0,255,.25);
-    border-color:var(--purple);
-}
-
-.btn:before{
+.btn::after{
     content:"";
     position:absolute;
     width:100px;
-    height:150%;
-    background:rgba(255,255,255,.3);
-    transform:rotate(20deg);
-    left:-150px;
-    top:-25%;
-    transition:.6s;
+    height:100px;
+    background:rgba(255,255,255,.25);
+    border-radius:50%;
+    left:var(--x,50%);
+    top:var(--y,50%);
+    transform:translate(-50%,-50%) scale(0);
+    transition:transform .5s;
 }
 
-.btn:hover:before{
-    left:130%;
+.btn:hover::after{
+    transform:translate(-50%,-50%) scale(2);
 }
 
-/* ================= TRUST BAR ================= */
+/* ================= FLOATING GLASS CARDS ================= */
 
-.trust{
-    width:100%;
-    border-top:1px solid rgba(255,255,255,.06);
-    border-bottom:1px solid rgba(255,255,255,.06);
-    background:rgba(255,255,255,.018);
-}
-
-.trust-inner{
-    max-width:1450px;
-    margin:auto;
-    min-height:95px;
+.hero-cards{
+    width:min(1050px,100%);
+    margin:75px auto 0;
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    align-items:center;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    animation:fadeUp 1.6s ease both;
 }
 
-.trust-item{
-    text-align:center;
-    border-right:1px solid rgba(255,255,255,.06);
-}
-
-.trust-item:last-child{
-    border:0;
-}
-
-.trust-item strong{
-    display:block;
-    font-size:20px;
-    color:#fff;
-}
-
-.trust-item span{
-    display:block;
-    color:#666670;
-    font-size:10px;
-    margin-top:5px;
-    letter-spacing:1px;
-}
-
-/* ================= SECTIONS ================= */
-
-section{
-    padding:105px 4%;
-}
-
-.container{
-    max-width:1450px;
-    margin:auto;
-}
-
-.section-heading{
-    margin-bottom:55px;
-}
-
-.section-heading.center{
-    text-align:center;
-}
-
-.section-heading small{
-    color:var(--green);
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:3px;
-}
-
-.section-heading h2{
-    font-size:clamp(38px,5vw,65px);
-    letter-spacing:-3px;
-    margin-top:12px;
-}
-
-.section-heading p{
-    max-width:600px;
-    color:#777781;
-    line-height:1.8;
-    margin-top:14px;
-}
-
-/* ================= FEATURE GRID ================= */
-
-.feature-grid{
-    display:grid;
-    grid-template-columns:1.3fr .8fr .8fr;
-    grid-template-rows:repeat(2,220px);
-    gap:18px;
-}
-
-.feature-box{
-    position:relative;
-    padding:32px;
-    border:1px solid var(--border);
-    border-radius:25px;
-    background:
-        linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
-    overflow:hidden;
+.glass-card{
+    min-height:145px;
+    padding:24px;
+    text-align:left;
+    border-radius:23px;
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.075),
+        rgba(255,255,255,.025)
+    );
+    border:1px solid rgba(255,255,255,.1);
+    backdrop-filter:blur(25px);
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.08),
+        0 25px 70px rgba(0,0,0,.25);
     transition:.4s;
 }
 
-.feature-box.big{
-    grid-row:span 2;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-}
-
-.feature-box:hover{
+.glass-card:hover{
     transform:translateY(-8px);
-    border-color:rgba(0,255,157,.35);
-    box-shadow:0 25px 70px rgba(0,0,0,.35);
+    border-color:rgba(0,255,166,.3);
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.1),
+        0 25px 80px rgba(0,255,166,.08);
 }
 
-.feature-box:before{
-    content:"";
-    position:absolute;
-    width:220px;
-    height:220px;
-    border-radius:50%;
-    background:var(--green);
-    filter:blur(80px);
-    opacity:.07;
-    right:-100px;
-    top:-100px;
-}
-
-.feature-box.purple:before{
-    background:var(--purple);
-}
-
-.feature-number{
-    color:#383840;
-    font-size:12px;
-    font-weight:900;
-    position:absolute;
-    right:25px;
-    top:25px;
-}
-
-.feature-icon{
-    width:52px;
-    height:52px;
+.card-icon{
+    width:40px;
+    height:40px;
+    border-radius:13px;
     display:grid;
     place-items:center;
-    border-radius:15px;
-    background:rgba(0,255,157,.07);
-    border:1px solid rgba(0,255,157,.18);
-    color:var(--green);
-    font-size:21px;
-    margin-bottom:20px;
+    background:linear-gradient(135deg,rgba(0,255,166,.15),rgba(150,0,255,.15));
+    border:1px solid rgba(255,255,255,.1);
+    margin-bottom:17px;
 }
 
-.feature-box.purple .feature-icon{
-    color:#c060ff;
-    background:rgba(168,0,255,.07);
-    border-color:rgba(168,0,255,.18);
+.glass-card h3{
+    font-size:15px;
+    margin-bottom:8px;
 }
 
-.feature-box h3{
-    font-size:20px;
-    margin-bottom:9px;
+.glass-card p{
+    color:#777;
+    font-size:12px;
+    line-height:1.6;
 }
 
-.feature-box p{
-    color:#777781;
-    font-size:13px;
+/* ================= SECTION ================= */
+
+section{
+    width:min(1180px,calc(100% - 35px));
+    margin:0 auto;
+    padding:110px 0;
+}
+
+.section-head{
+    margin-bottom:45px;
+}
+
+.kicker{
+    color:#00ffa6;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.section-head h2{
+    font-size:clamp(35px,5vw,60px);
+    margin-top:12px;
+    letter-spacing:-3px;
+}
+
+.section-head p{
+    margin-top:15px;
+    color:#777;
+    max-width:600px;
     line-height:1.7;
 }
 
-/* ================= PRODUCTS ================= */
+/* ================= FEATURES ================= */
 
-.product-grid{
+.features{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
 }
 
-.product{
-    position:relative;
-    min-height:500px;
-    padding:32px;
-    border-radius:27px;
-    border:1px solid var(--border);
-    background:rgba(10,10,14,.8);
-    overflow:hidden;
-    transition:.45s;
+.feature{
+    padding:28px;
+    min-height:190px;
+    border-radius:22px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    transition:.4s;
 }
 
-.product:hover{
-    transform:translateY(-12px);
-    border-color:rgba(0,255,157,.35);
-    box-shadow:0 30px 80px rgba(0,0,0,.45);
+.feature:hover{
+    transform:translateY(-7px);
+    background:rgba(255,255,255,.055);
+    border-color:rgba(167,0,255,.3);
 }
 
-.product.premium{
-    border-color:rgba(168,0,255,.3);
-}
-
-.product.premium:hover{
-    border-color:var(--purple);
-    box-shadow:0 30px 90px rgba(168,0,255,.18);
-}
-
-.product:after{
-    content:"";
-    position:absolute;
-    width:280px;
-    height:280px;
-    border-radius:50%;
-    background:var(--green);
-    filter:blur(100px);
-    opacity:.06;
-    right:-150px;
-    top:-130px;
-}
-
-.product.premium:after{
-    background:var(--purple);
-}
-
-.product-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.product-tag{
-    padding:7px 11px;
-    border-radius:8px;
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:1px;
-    color:var(--green);
-    background:rgba(0,255,157,.07);
-}
-
-.product.premium .product-tag{
-    color:#d26cff;
-    background:rgba(168,0,255,.08);
-}
-
-.product-number{
-    color:#38383f;
+.feature-number{
+    color:#555;
     font-size:11px;
-    font-weight:900;
+    font-weight:800;
 }
 
-.product h3{
-    font-size:29px;
-    margin-top:28px;
+.feature h3{
+    margin-top:35px;
+    font-size:17px;
 }
 
-.product-description{
-    color:#777781;
-    font-size:13px;
+.feature p{
+    color:#777;
+    font-size:12px;
     line-height:1.7;
     margin-top:10px;
 }
 
+/* ================= STORE ================= */
+
+.store-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.product{
+    position:relative;
+    overflow:hidden;
+    padding:30px;
+    min-height:360px;
+    border-radius:27px;
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.1);
+    backdrop-filter:blur(25px);
+    transition:.45s;
+}
+
+.product:hover{
+    transform:translateY(-10px);
+    border-color:rgba(0,255,166,.35);
+    box-shadow:0 30px 90px rgba(0,255,166,.06);
+}
+
+.product::before{
+    content:"";
+    position:absolute;
+    width:170px;
+    height:170px;
+    right:-70px;
+    top:-70px;
+    background:#00ffa6;
+    filter:blur(80px);
+    opacity:.12;
+}
+
+.product.premium::before{
+    background:#a700ff;
+}
+
+.product-tag{
+    display:inline-block;
+    padding:7px 10px;
+    border-radius:8px;
+    background:rgba(255,255,255,.06);
+    color:#aaa;
+    font-size:10px;
+    font-weight:800;
+}
+
+.product h3{
+    margin-top:28px;
+    font-size:24px;
+}
+
+.product p{
+    color:#777;
+    line-height:1.7;
+    font-size:13px;
+    margin-top:12px;
+}
+
 .price{
-    font-size:52px;
+    margin-top:28px;
+    font-size:35px;
     font-weight:900;
-    letter-spacing:-3px;
-    margin:28px 0;
 }
 
 .price small{
-    color:#666670;
-    font-size:10px;
-    letter-spacing:1px;
-}
-
-.product-list{
-    display:grid;
-    gap:13px;
-    margin-bottom:28px;
-}
-
-.product-list div{
-    color:#9999a2;
-    font-size:12px;
-}
-
-.product-list div:before{
-    content:"✓";
-    color:var(--green);
-    font-weight:900;
-    margin-right:9px;
-}
-
-.product.premium .product-list div:before{
-    color:var(--purple);
+    font-size:11px;
+    color:#666;
+    font-weight:500;
 }
 
 .product .btn{
-    width:100%;
-}
-
-/* Empty space killer */
-
-.product-extra{
-    position:absolute;
-    right:28px;
-    bottom:28px;
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,.08);
-    display:grid;
-    place-items:center;
-    color:#44444d;
-    font-size:18px;
+    display:inline-block;
+    margin-top:25px;
 }
 
 /* ================= PREMIUM ================= */
 
-.premium-area{
-    padding-top:70px;
-}
-
-.premium-panel{
-    max-width:1450px;
-    min-height:430px;
-    margin:auto;
+.premium{
     position:relative;
-    display:flex;
-    align-items:center;
     overflow:hidden;
+    padding:60px;
     border-radius:35px;
-    padding:65px;
     background:
-        radial-gradient(circle at 85% 20%,rgba(168,0,255,.2),transparent 28%),
-        radial-gradient(circle at 15% 90%,rgba(0,255,157,.14),transparent 30%),
-        rgba(10,10,14,.9);
-    border:1px solid rgba(168,0,255,.3);
+        linear-gradient(
+            120deg,
+            rgba(0,255,166,.08),
+            rgba(120,0,255,.1),
+            rgba(255,255,255,.025)
+        );
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(30px);
 }
 
-.premium-panel:before{
+.premium::before{
     content:"";
     position:absolute;
-    width:650px;
-    height:650px;
-    right:-280px;
-    top:-180px;
+    width:450px;
+    height:450px;
+    right:-150px;
+    top:-250px;
     border-radius:50%;
-    border:1px solid rgba(168,0,255,.13);
-    box-shadow:
-        0 0 0 50px rgba(168,0,255,.025),
-        0 0 0 100px rgba(168,0,255,.02);
-    animation:premiumRotate 12s linear infinite;
+    background:#a700ff;
+    filter:blur(120px);
+    opacity:.12;
 }
 
-@keyframes premiumRotate{
-    to{transform:rotate(360deg)}
-}
-
-.premium-text{
+.premium-inner{
     position:relative;
-    z-index:2;
-    max-width:700px;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
 }
 
-.premium-text small{
-    color:#c25aff;
-    font-weight:900;
-    letter-spacing:3px;
-    font-size:10px;
+.premium h2{
+    font-size:clamp(35px,5vw,65px);
+    letter-spacing:-3px;
 }
 
-.premium-text h2{
-    font-size:clamp(42px,6vw,75px);
-    letter-spacing:-4px;
-    margin:15px 0;
-}
-
-.premium-text h2 span{
-    color:var(--purple);
-    text-shadow:0 0 35px rgba(168,0,255,.5);
-}
-
-.premium-text p{
-    color:#85858e;
+.premium p{
+    color:#888;
     max-width:620px;
     line-height:1.8;
-    font-size:14px;
+    margin-top:15px;
 }
 
 .premium-price{
-    font-size:65px;
-    font-weight:900;
-    margin:28px 0;
+    text-align:right;
+    min-width:190px;
+}
+
+.premium-price strong{
+    display:block;
+    font-size:50px;
 }
 
 .premium-price span{
-    color:var(--green);
-    text-shadow:0 0 30px rgba(0,255,157,.35);
+    color:#777;
+    font-size:11px;
 }
 
-.premium-price small{
-    color:#666670;
-    letter-spacing:1px;
-}
+/* ================= STATS ================= */
 
-/* ================= WHY US ================= */
-
-.stats-grid{
+.stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:18px;
+    gap:15px;
 }
 
 .stat{
-    padding:32px;
-    min-height:170px;
-    border:1px solid var(--border);
-    border-radius:22px;
-    background:rgba(255,255,255,.025);
-    transition:.35s;
-}
-
-.stat:hover{
-    transform:translateY(-7px);
-    border-color:rgba(0,255,157,.3);
+    text-align:center;
+    padding:30px 15px;
+    border-radius:20px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.07);
 }
 
 .stat strong{
-    font-size:38px;
-    display:block;
-    color:#fff;
+    font-size:35px;
+    background:linear-gradient(90deg,#00ffa6,#a700ff);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 
-.stat span{
-    color:#777781;
+.stat p{
+    margin-top:8px;
+    color:#666;
     font-size:11px;
-    line-height:1.5;
 }
 
 /* ================= FAQ ================= */
 
 .faq{
-    max-width:900px;
-    margin:auto;
     display:grid;
     gap:12px;
 }
 
 details{
-    border:1px solid var(--border);
-    border-radius:17px;
-    background:rgba(255,255,255,.025);
-    padding:22px 25px;
-    transition:.3s;
-}
-
-details:hover{
-    border-color:rgba(0,255,157,.25);
+    padding:23px 25px;
+    border-radius:18px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.08);
 }
 
 summary{
     cursor:pointer;
+    font-weight:700;
     font-size:14px;
-    font-weight:800;
 }
 
 details p{
-    color:#777781;
-    font-size:13px;
+    color:#777;
     line-height:1.8;
-    margin-top:14px;
+    font-size:13px;
+    padding-top:15px;
 }
 
 /* ================= FOOTER ================= */
 
 footer{
-    padding:55px 5%;
-    border-top:1px solid rgba(255,255,255,.07);
-    text-align:center;
-}
-
-.footer-logo{
-    font-size:25px;
-    font-weight:900;
-}
-
-.footer-logo span{
-    color:var(--green);
-}
-
-footer p{
-    color:#55555f;
+    width:min(1180px,calc(100% - 35px));
+    margin:auto;
+    padding:45px 0 35px;
+    border-top:1px solid rgba(255,255,255,.08);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#555;
     font-size:11px;
-    margin-top:10px;
 }
 
-/* ================= RTL ================= */
-
-[dir="rtl"] .hero h1{
-    letter-spacing:0;
+.footer-brand{
+    color:#aaa;
+    font-weight:800;
+    letter-spacing:2px;
 }
 
-[dir="rtl"] .feature-number{
-    right:auto;
-    left:25px;
-}
+/* ================= ANIMATIONS ================= */
 
-[dir="rtl"] .product-number{
-    direction:ltr;
-}
-
-[dir="rtl"] .product-list div:before{
-    margin-right:0;
-    margin-left:9px;
-}
-
-[dir="rtl"] .nav-links{
-    direction:rtl;
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:1100px){
-
-    .hero-layout{
-        grid-template-columns:190px minmax(400px,1fr) 190px;
-        gap:18px;
-    }
-
-    .side-card{
-        padding:17px;
-    }
-
-    .feature-grid{
-        grid-template-columns:1fr 1fr;
-        grid-template-rows:auto;
-    }
-
-    .feature-box.big{
-        grid-row:auto;
-    }
-
-    .product-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .stats-grid{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:800px){
-
-    nav{
-        padding:0 5%;
-    }
-
+@media(max-width:900px){
     .nav-links{
         display:none;
     }
 
-    .hero{
-        min-height:auto;
-        padding-top:130px;
-    }
-
-    .hero-layout{
+    .hero-cards{
         grid-template-columns:1fr;
     }
 
-    .side-column{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        order:2;
+    .features{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .hero-center{
-        order:1;
-    }
-
-    .hero h1{
-        font-size:80px;
-    }
-
-    .trust-inner{
-        grid-template-columns:1fr 1fr;
-        padding:20px 0;
-        gap:20px;
-    }
-
-    .trust-item:nth-child(2){
-        border:0;
-    }
-
-    .feature-grid,
-    .product-grid,
-    .stats-grid{
+    .store-grid{
         grid-template-columns:1fr;
     }
 
-    .premium-panel{
-        padding:40px 25px;
+    .stats{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    section{
-        padding:80px 5%;
-    }
-}
-
-@media(max-width:500px){
-
-    .hero h1{
-        font-size:67px;
-        letter-spacing:-5px;
-    }
-
-    .hero-subtitle{
-        font-size:14px;
-    }
-
-    .side-column{
-        grid-template-columns:1fr;
-    }
-
-    .trust-inner{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .trust-item{
-        border:0;
+    .premium-inner{
+        flex-direction:column;
+        align-items:flex-start;
     }
 
     .premium-price{
-        font-size:50px;
+        text-align:left;
+    }
+}
+
+@media(max-width:550px){
+    .navbar{
+        top:10px;
+    }
+
+    .hero{
+        padding-top:125px;
+    }
+
+    .hero h1{
+        letter-spacing:-4px;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .premium{
+        padding:35px 25px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:15px;
     }
 }
 </style>
@@ -1071,145 +782,85 @@ footer p{
 
 <body>
 
-<div class="orb green"></div>
-<div class="orb purple"></div>
+<div class="grid"></div>
 
-<div class="particles">
-    <i style="left:3%;animation-duration:14s"></i>
-    <i style="left:9%;animation-duration:19s"></i>
-    <i style="left:16%;animation-duration:12s"></i>
-    <i style="left:23%;animation-duration:17s"></i>
-    <i style="left:31%;animation-duration:21s"></i>
-    <i style="left:39%;animation-duration:14s"></i>
-    <i style="left:47%;animation-duration:18s"></i>
-    <i style="left:55%;animation-duration:13s"></i>
-    <i style="left:63%;animation-duration:20s"></i>
-    <i style="left:71%;animation-duration:15s"></i>
-    <i style="left:79%;animation-duration:18s"></i>
-    <i style="left:87%;animation-duration:12s"></i>
-    <i style="left:95%;animation-duration:16s"></i>
-</div>
+<div class="orb one"></div>
+<div class="orb two"></div>
+<div class="orb three"></div>
 
-<!-- NAV -->
+<div class="particles" id="particles"></div>
 
-<nav>
+<!-- NAVBAR -->
+<nav class="navbar">
 
     <div class="logo">
-        48 <span>STORE</span>
+        <div class="logo-mark">G</div>
+        GNE STORE
     </div>
 
     <div class="nav-links">
-        <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
-        <a href="#features" data-en="Features" data-ar="المميزات">Features</a>
-        <a href="#products" data-en="Store" data-ar="المتجر">Store</a>
-        <a href="#premium" data-en="Premium" data-ar="بريميوم">Premium</a>
-        <a href="#faq" data-en="FAQ" data-ar="الأسئلة">FAQ</a>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#store">Store</a>
+        <a href="#premium">Premium</a>
+        <a href="#faq">FAQ</a>
     </div>
 
-    <div class="lang">
-        <button class="active" onclick="setLang('en')">EN</button>
-        <button onclick="setLang('ar')">AR</button>
-    </div>
+    <a href="#store" class="nav-btn">Explore</a>
 
 </nav>
 
 <!-- HERO -->
+<main id="home">
 
-<header class="hero" id="home">
+<section class="hero">
 
-    <div class="hero-layout">
+    <div class="hero-wrap">
 
-        <!-- LEFT -->
-
-        <div class="side-column">
-
-            <div class="side-card">
-                <div class="side-icon">✦</div>
-                <h4 data-en="Premium Quality" data-ar="جودة احترافية">
-                    Premium Quality
-                </h4>
-                <p data-en="Designed with attention to every detail."
-                   data-ar="مصمم بعناية مع الاهتمام بكل التفاصيل.">
-                    Designed with attention to every detail.
-                </p>
-            </div>
-
-            <div class="side-card purple">
-                <div class="side-icon">◇</div>
-                <h4 data-en="Modern Design" data-ar="تصميم عصري">
-                    Modern Design
-                </h4>
-                <p data-en="A clean and futuristic gaming experience."
-                   data-ar="تجربة ألعاب عصرية ومستقبلية.">
-                    A clean and futuristic gaming experience.
-                </p>
-            </div>
-
+        <div class="badge">
+            <span></span>
+            GNE STORE IS ONLINE
         </div>
 
-        <!-- CENTER -->
+        <h1>GNE STORE</h1>
 
-        <div class="hero-center">
+        <p class="hero-sub">
+            A next-generation digital store built for gamers.
+            Premium tools, exclusive products and a futuristic experience —
+            all in one place.
+        </p>
 
-            <div class="badge">
-                <span></span>
-                <label data-en="WELCOME TO 48 STORE"
-                       data-ar="مرحباً بك في 48 STORE">
-                    WELCOME TO 48 STORE
-                </label>
-            </div>
-
-            <h1>48<br>STORE</h1>
-
-            <p class="hero-subtitle"
-               data-en="Premium gaming tools, digital products and experiences built for players who expect more."
-               data-ar="أدوات ألعاب ومنتجات رقمية وتجارب احترافية مصممة للاعبين الذين يريدون الأفضل.">
-                Premium gaming tools, digital products and experiences built for players who expect more.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#products"
-                   class="btn btn-green"
-                   data-en="EXPLORE STORE"
-                   data-ar="استكشف المتجر">
-                    EXPLORE STORE
-                </a>
-
-                <a href="#premium"
-                   class="btn btn-purple"
-                   data-en="DISCOVER PREMIUM"
-                   data-ar="اكتشف البريميوم">
-                    DISCOVER PREMIUM
-                </a>
-
-            </div>
-
+        <div class="hero-buttons">
+            <a href="#store" class="btn primary">Explore Store</a>
+            <a href="#premium" class="btn">View Premium</a>
         </div>
 
-        <!-- RIGHT -->
+        <div class="hero-cards">
 
-        <div class="side-column">
-
-            <div class="side-card purple">
-                <div class="side-icon">⚡</div>
-                <h4 data-en="Advanced Tools" data-ar="أدوات متقدمة">
-                    Advanced Tools
-                </h4>
-                <p data-en="Powerful digital products made for gamers."
-                   data-ar="منتجات رقمية قوية مصممة للاعبين.">
-                    Powerful digital products made for gamers.
+            <div class="glass-card">
+                <div class="card-icon">✦</div>
+                <h3>Premium Quality</h3>
+                <p>
+                    Carefully designed digital products with a clean,
+                    modern and premium experience.
                 </p>
             </div>
 
-            <div class="side-card">
-                <div class="side-icon">∞</div>
-                <h4 data-en="Future Updates" data-ar="تحديثات مستقبلية">
-                    Future Updates
-                </h4>
-                <p data-en="The store keeps evolving with new content."
-                   data-ar="المتجر يتطور باستمرار مع محتوى جديد.">
-                    The store keeps evolving with new content.
+            <div class="glass-card">
+                <div class="card-icon">◈</div>
+                <h3>Digital Access</h3>
+                <p>
+                    Get your products digitally with a fast and simple
+                    experience.
+                </p>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-icon">∞</div>
+                <h3>Always Evolving</h3>
+                <p>
+                    New products, updates and improvements are constantly
+                    coming to GNE STORE.
                 </p>
             </div>
 
@@ -1217,425 +868,135 @@ footer p{
 
     </div>
 
-</header>
-
-<!-- TRUST -->
-
-<div class="trust">
-
-    <div class="trust-inner">
-
-        <div class="trust-item">
-            <strong>48</strong>
-            <span data-en="STORE BRAND" data-ar="علامة المتجر">STORE BRAND</span>
-        </div>
-
-        <div class="trust-item">
-            <strong>24/7</strong>
-            <span data-en="DIGITAL ACCESS" data-ar="وصول رقمي">DIGITAL ACCESS</span>
-        </div>
-
-        <div class="trust-item">
-            <strong>100%</strong>
-            <span data-en="DIGITAL PRODUCTS" data-ar="منتجات رقمية">DIGITAL PRODUCTS</span>
-        </div>
-
-        <div class="trust-item">
-            <strong>∞</strong>
-            <span data-en="FUTURE UPDATES" data-ar="تحديثات مستقبلية">FUTURE UPDATES</span>
-        </div>
-
-    </div>
-
-</div>
+</section>
 
 <!-- FEATURES -->
-
 <section id="features">
 
-    <div class="container">
+    <div class="section-head">
+        <div class="kicker">Why GNE</div>
+        <h2>Built Different.</h2>
+        <p>
+            GNE STORE is designed around quality, simplicity and a premium
+            digital experience.
+        </p>
+    </div>
 
-        <div class="section-heading">
-            <small data-en="THE 48 EXPERIENCE" data-ar="تجربة 48">
-                THE 48 EXPERIENCE
-            </small>
+    <div class="features">
 
-            <h2 data-en="MORE THAN A STORE."
-                data-ar="أكثر من مجرد متجر.">
-                MORE THAN A STORE.
-            </h2>
-
-            <p data-en="A complete digital experience designed around quality, style and simplicity."
-               data-ar="تجربة رقمية متكاملة مصممة حول الجودة والأناقة والبساطة.">
-                A complete digital experience designed around quality, style and simplicity.
+        <div class="feature">
+            <div class="feature-number">01</div>
+            <h3>Gaming Focused</h3>
+            <p>
+                Products and experiences made with gamers in mind.
             </p>
         </div>
 
-        <div class="feature-grid">
+        <div class="feature">
+            <div class="feature-number">02</div>
+            <h3>Premium Design</h3>
+            <p>
+                Modern glass interfaces, smooth animations and a futuristic
+                visual identity.
+            </p>
+        </div>
 
-            <div class="feature-box big">
+        <div class="feature">
+            <div class="feature-number">03</div>
+            <h3>Simple Experience</h3>
+            <p>
+                No unnecessary complexity. Everything stays clean and easy.
+            </p>
+        </div>
 
-                <div class="feature-number">01</div>
-
-                <div class="feature-icon">⚡</div>
-
-                <h3 data-en="Built For Gamers"
-                    data-ar="مصمم للاعبين">
-                    Built For Gamers
-                </h3>
-
-                <p data-en="Every product and every detail of 48 Store is focused on creating a better gaming setup and experience."
-                   data-ar="كل منتج وكل تفصيل في 48 Store يركز على تقديم تجربة وإعداد ألعاب أفضل.">
-                    Every product and every detail of 48 Store is focused on creating a better gaming setup and experience.
-                </p>
-
-            </div>
-
-            <div class="feature-box purple">
-
-                <div class="feature-number">02</div>
-
-                <div class="feature-icon">✦</div>
-
-                <h3 data-en="Premium Feel"
-                    data-ar="إحساس احترافي">
-                    Premium Feel
-                </h3>
-
-                <p data-en="Modern interfaces and carefully designed products."
-                   data-ar="واجهات عصرية ومنتجات مصممة بعناية.">
-                    Modern interfaces and carefully designed products.
-                </p>
-
-            </div>
-
-            <div class="feature-box">
-
-                <div class="feature-number">03</div>
-
-                <div class="feature-icon">◇</div>
-
-                <h3 data-en="Simple"
-                    data-ar="بسيط">
-                    Simple
-                </h3>
-
-                <p data-en="Easy to understand. Easy to use."
-                   data-ar="سهل الفهم وسهل الاستخدام.">
-                    Easy to understand. Easy to use.
-                </p>
-
-            </div>
-
-            <div class="feature-box">
-
-                <div class="feature-number">04</div>
-
-                <div class="feature-icon">∞</div>
-
-                <h3 data-en="Always Evolving"
-                    data-ar="يتطور باستمرار">
-                    Always Evolving
-                </h3>
-
-                <p data-en="New ideas and products can be added over time."
-                   data-ar="يمكن إضافة أفكار ومنتجات جديدة مع الوقت.">
-                    New ideas and products can be added over time.
-                </p>
-
-            </div>
-
-            <div class="feature-box purple">
-
-                <div class="feature-number">05</div>
-
-                <div class="feature-icon">◆</div>
-
-                <h3 data-en="Exclusive"
-                    data-ar="حصري">
-                    Exclusive
-                </h3>
-
-                <p data-en="Premium content created specifically for 48 Store."
-                   data-ar="محتوى Premium مصمم خصيصاً لـ48 Store.">
-                    Premium content created specifically for 48 Store.
-                </p>
-
-            </div>
-
+        <div class="feature">
+            <div class="feature-number">04</div>
+            <h3>Future Updates</h3>
+            <p>
+                GNE STORE will continue growing with new digital products.
+            </p>
         </div>
 
     </div>
 
 </section>
 
-<!-- PRODUCTS -->
-
-<section id="products">
-
-    <div class="container">
-
-        <div class="section-heading center">
-
-            <small data-en="THE STORE" data-ar="المتجر">
-                THE STORE
-            </small>
-
-            <h2 data-en="CHOOSE YOUR LEVEL."
-                data-ar="اختر مستواك.">
-                CHOOSE YOUR LEVEL.
-            </h2>
-
-            <p data-en="Start free or unlock the complete Premium experience."
-               data-ar="ابدأ مجاناً أو افتح تجربة Premium الكاملة.">
-                Start free or unlock the complete Premium experience.
-            </p>
-
-        </div>
-
-        <div class="product-grid">
-
-            <!-- FREE -->
-
-            <div class="product">
-
-                <div class="product-top">
-
-                    <div class="product-tag"
-                         data-en="FREE"
-                         data-ar="مجاني">
-                        FREE
-                    </div>
-
-                    <div class="product-number">01</div>
-
-                </div>
-
-                <h3 data-en="Starter Pack"
-                    data-ar="الحزمة المجانية">
-                    Starter Pack
-                </h3>
-
-                <p class="product-description"
-                   data-en="A simple starting point for your gaming setup."
-                   data-ar="نقطة بداية بسيطة لإعداد ألعابك.">
-                    A simple starting point for your gaming setup.
-                </p>
-
-                <div class="price">
-                    $0 <small>FREE</small>
-                </div>
-
-                <div class="product-list">
-
-                    <div data-en="Free access"
-                         data-ar="دخول مجاني">
-                        Free access
-                    </div>
-
-                    <div data-en="Easy installation"
-                         data-ar="تثبيت سهل">
-                        Easy installation
-                    </div>
-
-                    <div data-en="Starter features"
-                         data-ar="مميزات أساسية">
-                        Starter features
-                    </div>
-
-                    <div data-en="Digital download"
-                         data-ar="تحميل رقمي">
-                        Digital download
-                    </div>
-
-                </div>
-
-                <a href="GNE_Fortnite_Performance_Pack.zip"
-                   class="btn btn-green"
-                   data-en="DOWNLOAD FREE"
-                   data-ar="تحميل مجاني">
-                    DOWNLOAD FREE
-                </a>
-
-                <div class="product-extra">↓</div>
-
-            </div>
-
-            <!-- PREMIUM -->
-
-            <div class="product premium">
-
-                <div class="product-top">
-
-                    <div class="product-tag"
-                         data-en="PREMIUM"
-                         data-ar="بريميوم">
-                        PREMIUM
-                    </div>
-
-                    <div class="product-number">02</div>
-
-                </div>
-
-                <h3 data-en="48 Premium"
-                    data-ar="48 بريميوم">
-                    48 Premium
-                </h3>
-
-                <p class="product-description"
-                   data-en="The complete 48 Store experience with advanced features and exclusive content."
-                   data-ar="تجربة 48 Store الكاملة مع مميزات متقدمة ومحتوى حصري.">
-                    The complete 48 Store experience with advanced features and exclusive content.
-                </p>
-
-                <div class="price">
-                    $30 <small>ONE TIME</small>
-                </div>
-
-                <div class="product-list">
-
-                    <div data-en="Full Premium access"
-                         data-ar="دخول كامل للبريميوم">
-                        Full Premium access
-                    </div>
-
-                    <div data-en="Advanced features"
-                         data-ar="مميزات متقدمة">
-                        Advanced features
-                    </div>
-
-                    <div data-en="Exclusive content"
-                         data-ar="محتوى حصري">
-                        Exclusive content
-                    </div>
-
-                    <div data-en="Future updates"
-                         data-ar="تحديثات مستقبلية">
-                        Future updates
-                    </div>
-
-                </div>
-
-                <a href="#"
-                   class="btn btn-purple"
-                   data-en="BUY PREMIUM — $30"
-                   data-ar="شراء بريميوم — $30">
-                    BUY PREMIUM — $30
-                </a>
-
-                <div class="product-extra">✦</div>
-
-            </div>
-
-            <!-- CUSTOM -->
-
-            <div class="product">
-
-                <div class="product-top">
-
-                    <div class="product-tag"
-                         data-en="COMING SOON"
-                         data-ar="قريباً">
-                        COMING SOON
-                    </div>
-
-                    <div class="product-number">03</div>
-
-                </div>
-
-                <h3 data-en="More Products"
-                    data-ar="منتجات أكثر">
-                    More Products
-                </h3>
-
-                <p class="product-description"
-                   data-en="New digital products and tools will be added to the store."
-                   data-ar="ستتم إضافة منتجات وأدوات رقمية جديدة إلى المتجر.">
-                    New digital products and tools will be added to the store.
-                </p>
-
-                <div class="price">
-                    <span style="font-size:32px">SOON</span>
-                </div>
-
-                <div class="product-list">
-
-                    <div data-en="New products"
-                         data-ar="منتجات جديدة">
-                        New products
-                    </div>
-
-                    <div data-en="New features"
-                         data-ar="مميزات جديدة">
-                        New features
-                    </div>
-
-                    <div data-en="Exclusive releases"
-                         data-ar="إصدارات حصرية">
-                        Exclusive releases
-                    </div>
-
-                    <div data-en="48 Store updates"
-                         data-ar="تحديثات 48 Store">
-                        48 Store updates
-                    </div>
-
-                </div>
-
-                <a href="#"
-                   class="btn btn-green"
-                   data-en="COMING SOON"
-                   data-ar="قريباً">
-                    COMING SOON
-                </a>
-
-                <div class="product-extra">+</div>
-
-            </div>
-
-        </div>
-
+<!-- STORE -->
+<section id="store">
+
+    <div class="section-head">
+        <div class="kicker">Digital Store</div>
+        <h2>Choose Your Level.</h2>
+        <p>
+            Start free or unlock the premium GNE experience.
+        </p>
     </div>
 
-</section>
+    <div class="store-grid">
 
-<!-- PREMIUM -->
+        <div class="product">
 
-<section class="premium-area" id="premium">
+            <span class="product-tag">FREE</span>
 
-    <div class="premium-panel">
+            <h3>GNE Starter Pack</h3>
 
-        <div class="premium-text">
-
-            <small data-en="UNLOCK EVERYTHING"
-                   data-ar="افتح كل شيء">
-                UNLOCK EVERYTHING
-            </small>
-
-            <h2>
-                <span>48</span>
-                <br>
-                <span data-en="PREMIUM EXPERIENCE"
-                      data-ar="التجربة الاحترافية">
-                    PREMIUM EXPERIENCE
-                </span>
-            </h2>
-
-            <p data-en="Take your experience to the next level with the complete Premium package. Exclusive features, premium content and future updates."
-               data-ar="ارتقِ بتجربتك مع حزمة Premium الكاملة، والمميزات الحصرية والمحتوى الاحترافي والتحديثات المستقبلية.">
-                Take your experience to the next level with the complete Premium package. Exclusive features, premium content and future updates.
+            <p>
+                A free digital starter pack for gamers who want to try
+                GNE STORE.
             </p>
 
-            <div class="premium-price">
-                <span>$30</span>
-                <small>ONE TIME</small>
+            <div class="price">
+                $0 <small>FREE</small>
             </div>
 
-            <a href="#"
-               class="btn btn-green"
-               data-en="GET PREMIUM"
-               data-ar="احصل على Premium">
-                GET PREMIUM
+            <a
+                href="GNE_Fortnite_Performance_Pack.zip"
+                class="btn primary"
+            >
+                Download
+            </a>
+
+        </div>
+
+        <div class="product premium">
+
+            <span class="product-tag">PREMIUM</span>
+
+            <h3>GNE Premium</h3>
+
+            <p>
+                The complete premium experience with exclusive digital
+                content and future updates.
+            </p>
+
+            <div class="price">
+                $30 <small>ONE TIME</small>
+            </div>
+
+            <!-- Replace # with your real payment link -->
+            <a href="#" class="btn primary">
+                Get Premium
+            </a>
+
+        </div>
+
+        <div class="product">
+
+            <span class="product-tag">COMING SOON</span>
+
+            <h3>More Products</h3>
+
+            <p>
+                New tools, packs and exclusive digital products are currently
+                being prepared.
+            </p>
+
+            <div class="price">
+                ∞ <small>SOON</small>
+            </div>
+
+            <a href="#store" class="btn">
+                Stay Tuned
             </a>
 
         </div>
@@ -1644,60 +1005,63 @@ footer p{
 
 </section>
 
-<!-- STATS -->
+<!-- PREMIUM -->
+<section id="premium">
 
-<section>
+    <div class="premium">
 
-    <div class="container">
+        <div class="premium-inner">
 
-        <div class="section-heading center">
+            <div>
+                <div class="kicker">GNE PREMIUM</div>
 
-            <small data-en="48 STORE STANDARD"
-                   data-ar="معايير 48 STORE">
-                48 STORE STANDARD
-            </small>
+                <h2>Unlock More.</h2>
 
-            <h2 data-en="QUALITY FIRST."
-                data-ar="الجودة أولاً.">
-                QUALITY FIRST.
-            </h2>
+                <p>
+                    Get access to the premium side of GNE STORE.
+                    One purchase, exclusive digital content and future
+                    improvements included.
+                </p>
+
+                <a href="#" class="btn primary" style="display:inline-block;margin-top:25px;">
+                    Get GNE Premium
+                </a>
+            </div>
+
+            <div class="premium-price">
+                <strong>$30</strong>
+                <span>ONE-TIME PURCHASE</span>
+            </div>
 
         </div>
 
-        <div class="stats-grid">
+    </div>
 
-            <div class="stat">
-                <strong>01</strong>
-                <span data-en="Clean and modern design."
-                      data-ar="تصميم نظيف وعصري.">
-                    Clean and modern design.
-                </span>
-            </div>
+</section>
 
-            <div class="stat">
-                <strong>02</strong>
-                <span data-en="Premium digital experience."
-                      data-ar="تجربة رقمية احترافية.">
-                    Premium digital experience.
-                </span>
-            </div>
+<!-- STATS -->
+<section>
 
-            <div class="stat">
-                <strong>03</strong>
-                <span data-en="Constant improvements."
-                      data-ar="تحسينات مستمرة.">
-                    Constant improvements.
-                </span>
-            </div>
+    <div class="stats">
 
-            <div class="stat">
-                <strong>04</strong>
-                <span data-en="Built around the gaming community."
-                      data-ar="مصمم حول مجتمع الألعاب.">
-                    Built around the gaming community.
-                </span>
-            </div>
+        <div class="stat">
+            <strong>24/7</strong>
+            <p>DIGITAL ACCESS</p>
+        </div>
 
+        <div class="stat">
+            <strong>100%</strong>
+            <p>DIGITAL</p>
+        </div>
+
+        <div class="stat">
+            <strong>∞</strong>
+            <p>FUTURE UPDATES</p>
+        </div>
+
+        <div class="stat">
+            <strong>GNE</strong>
+            <p>STORE BRAND</p>
         </div>
 
     </div>
@@ -1705,203 +1069,119 @@ footer p{
 </section>
 
 <!-- FAQ -->
-
 <section id="faq">
 
-    <div class="container">
+    <div class="section-head">
+        <div class="kicker">FAQ</div>
+        <h2>Questions?</h2>
+    </div>
 
-        <div class="section-heading center">
+    <div class="faq">
 
-            <small data-en="NEED ANSWERS?"
-                   data-ar="تحتاج إجابة؟">
-                NEED ANSWERS?
-            </small>
+        <details>
+            <summary>What is GNE STORE?</summary>
+            <p>
+                GNE STORE is a digital gaming store focused on premium
+                products, tools and experiences.
+            </p>
+        </details>
 
-            <h2 data-en="FAQ."
-                data-ar="الأسئلة الشائعة.">
-                FAQ.
-            </h2>
+        <details>
+            <summary>Is there a free product?</summary>
+            <p>
+                Yes. The GNE Starter Pack is available for free.
+            </p>
+        </details>
 
-        </div>
-
-        <div class="faq">
-
-            <details>
-
-                <summary data-en="What is 48 Store?"
-                         data-ar="ما هو 48 Store؟">
-                    What is 48 Store?
-                </summary>
-
-                <p data-en="48 Store is a gaming-focused digital store offering free and premium products."
-                   data-ar="48 Store هو متجر رقمي متخصص بالألعاب ويقدم منتجات مجانية وPremium.">
-                    48 Store is a gaming-focused digital store offering free and premium products.
-                </p>
-
-            </details>
-
-            <details>
-
-                <summary data-en="How much is Premium?"
-                         data-ar="كم سعر Premium؟">
-                    How much is Premium?
-                </summary>
-
-                <p data-en="The current Premium price displayed on the website is $30 as a one-time purchase."
-                   data-ar="السعر الحالي للبريميوم على الموقع هو 30 دولار كدفعة واحدة.">
-                    The current Premium price displayed on the website is $30 as a one-time purchase.
-                </p>
-
-            </details>
-
-            <details>
-
-                <summary data-en="Will more products be added?"
-                         data-ar="هل ستتم إضافة منتجات أخرى؟">
-                    Will more products be added?
-                </summary>
-
-                <p data-en="Yes. More products and features can be added as 48 Store continues to grow."
-                   data-ar="نعم، يمكن إضافة منتجات ومميزات جديدة مع تطور 48 Store.">
-                    Yes. More products and features can be added as 48 Store continues to grow.
-                </p>
-
-            </details>
-
-        </div>
+        <details>
+            <summary>How much is GNE Premium?</summary>
+            <p>
+                GNE Premium is currently listed at $30 as a one-time purchase.
+            </p>
+        </details>
 
     </div>
 
 </section>
 
-<!-- FOOTER -->
+</main>
 
+<!-- FOOTER -->
 <footer>
 
-    <div class="footer-logo">
-        48 <span>STORE</span>
+    <div class="footer-brand">
+        GNE STORE
     </div>
 
-    <p>
-        © 2026 48 Store — All Rights Reserved.
-    </p>
+    <div>
+        © 2026 GNE STORE. All rights reserved.
+    </div>
 
 </footer>
 
 <script>
 
-/* ================= LANGUAGE ================= */
+/* ================= PARTICLES ================= */
 
-function setLang(lang){
+const particles = document.getElementById("particles");
 
-    document.documentElement.lang = lang;
+for(let i = 0; i < 55; i++){
 
-    document.documentElement.dir =
-        lang === 'ar' ? 'rtl' : 'ltr';
+    const p = document.createElement("div");
 
-    document.querySelectorAll('[data-en]').forEach(el => {
+    p.className = "particle";
 
-        const text = el.getAttribute('data-' + lang);
+    p.style.left = Math.random() * 100 + "%";
+    p.style.animationDuration = (7 + Math.random() * 14) + "s";
+    p.style.animationDelay = (-Math.random() * 15) + "s";
+    p.style.opacity = Math.random() * .5;
 
-        if(text){
-            el.textContent = text;
-        }
-
-    });
-
-    document.querySelectorAll('.lang button').forEach(btn => {
-        btn.classList.remove('active');
-    });
-
-    if(lang === 'en'){
-        document.querySelector('.lang button:first-child')
-            .classList.add('active');
-    }else{
-        document.querySelector('.lang button:last-child')
-            .classList.add('active');
-    }
-
-    localStorage.setItem('48store-language',lang);
+    particles.appendChild(p);
 }
 
-const savedLanguage =
-    localStorage.getItem('48store-language');
+/* ================= BUTTON RIPPLE ================= */
 
-if(savedLanguage){
-    setLang(savedLanguage);
-}
+document.querySelectorAll(".btn").forEach(button => {
 
+    button.addEventListener("mousemove", e => {
 
-/* ================= BUTTON EFFECT ================= */
+        const rect = button.getBoundingClientRect();
 
-document.querySelectorAll('.btn').forEach(button => {
-
-    button.addEventListener('click',function(e){
-
-        const ripple =
-            document.createElement('span');
-
-        ripple.style.position='absolute';
-        ripple.style.width='10px';
-        ripple.style.height='10px';
-        ripple.style.borderRadius='50%';
-        ripple.style.background='rgba(255,255,255,.5)';
-        ripple.style.left=e.offsetX+'px';
-        ripple.style.top=e.offsetY+'px';
-        ripple.style.transform='translate(-50%,-50%)';
-        ripple.style.pointerEvents='none';
-
-        this.appendChild(ripple);
-
-        ripple.animate(
-            [
-                {
-                    width:'10px',
-                    height:'10px',
-                    opacity:.7
-                },
-                {
-                    width:'550px',
-                    height:'550px',
-                    opacity:0
-                }
-            ],
-            {
-                duration:650,
-                easing:'ease-out'
-            }
+        button.style.setProperty(
+            "--x",
+            (e.clientX - rect.left) + "px"
         );
 
-        setTimeout(()=>{
-            ripple.remove();
-        },650);
+        button.style.setProperty(
+            "--y",
+            (e.clientY - rect.top) + "px"
+        );
 
     });
 
 });
 
-
 /* ================= MOUSE GLOW ================= */
 
-const mouseGlow =
-    document.createElement('div');
+const mouseGlow = document.createElement("div");
 
-mouseGlow.style.position='fixed';
-mouseGlow.style.width='250px';
-mouseGlow.style.height='250px';
-mouseGlow.style.borderRadius='50%';
-mouseGlow.style.pointerEvents='none';
-mouseGlow.style.zIndex='-4';
-mouseGlow.style.background=
-    'radial-gradient(circle,rgba(0,255,157,.07),transparent 70%)';
-mouseGlow.style.transform='translate(-50%,-50%)';
+mouseGlow.style.position = "fixed";
+mouseGlow.style.width = "300px";
+mouseGlow.style.height = "300px";
+mouseGlow.style.borderRadius = "50%";
+mouseGlow.style.pointerEvents = "none";
+mouseGlow.style.zIndex = "-1";
+mouseGlow.style.background =
+    "radial-gradient(circle,rgba(0,255,166,.08),transparent 65%)";
+mouseGlow.style.transform = "translate(-50%,-50%)";
+mouseGlow.style.filter = "blur(20px)";
 
 document.body.appendChild(mouseGlow);
 
-document.addEventListener('mousemove',e=>{
+document.addEventListener("mousemove", e => {
 
-    mouseGlow.style.left=e.clientX+'px';
-    mouseGlow.style.top=e.clientY+'px';
+    mouseGlow.style.left = e.clientX + "px";
+    mouseGlow.style.top = e.clientY + "px";
 
 });
 
@@ -1910,4 +1190,5 @@ document.addEventListener('mousemove',e=>{
 </body>
 </html>
 ```
+
 
